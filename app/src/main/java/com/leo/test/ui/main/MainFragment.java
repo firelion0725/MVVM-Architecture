@@ -1,6 +1,7 @@
 package com.leo.test.ui.main;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +28,9 @@ public class MainFragment extends BaseFragment<MainViewModel> {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        viewModel.data.observe(this, taskModel -> {
+            Log.i("observe", "" + taskModel);
+        });
         viewModel.getData();
     }
-
 }
