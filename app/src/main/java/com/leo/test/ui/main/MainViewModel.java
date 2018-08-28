@@ -22,6 +22,7 @@ public class MainViewModel extends BaseViewModel {
             public void onSuccess(TaskModel taskModel) {
                 Log.i("getData", "onSuccess");
                 data.setValue(taskModel);
+//                data.postValue(taskModel);
             }
 
             @Override
