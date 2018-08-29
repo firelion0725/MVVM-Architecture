@@ -36,6 +36,7 @@ public abstract class BaseFragment<T extends BaseViewModel> extends Fragment {
     @Override
     public void onDestroy() {
         viewModel.onCleared();
+        getLifecycle().removeObserver(viewModel);
         viewModel = null;
         super.onDestroy();
     }
