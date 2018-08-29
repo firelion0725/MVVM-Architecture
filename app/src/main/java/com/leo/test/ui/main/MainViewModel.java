@@ -29,6 +29,7 @@ public class MainViewModel extends BaseViewModel {
             public void onError(Throwable e) {
                 Log.i("getData", "onError");
                 e.printStackTrace();
+                data.setValue(null);
             }
         });
     }

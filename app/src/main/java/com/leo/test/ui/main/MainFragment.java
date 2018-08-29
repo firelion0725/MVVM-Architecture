@@ -29,8 +29,11 @@ public class MainFragment extends BaseFragment<MainViewModel> {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         viewModel.data.observe(this, taskModel -> {
-            Log.i("observe", "" + taskModel);
+            if (taskModel != null) {
+                Log.i("observe", "" + taskModel);
+            }
         });
+
         viewModel.getData();
     }
 }
