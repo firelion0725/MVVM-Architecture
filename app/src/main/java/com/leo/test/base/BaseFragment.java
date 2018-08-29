@@ -32,4 +32,11 @@ public abstract class BaseFragment<T extends BaseViewModel> extends Fragment {
     private Class<T> getTClass() {
         return (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
+
+    @Override
+    public void onDestroy() {
+        viewModel.onCleared();
+        viewModel = null;
+        super.onDestroy();
+    }
 }

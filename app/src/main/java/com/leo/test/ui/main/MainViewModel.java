@@ -6,7 +6,6 @@ import com.leo.test.base.BaseViewModel;
 import com.leo.test.data.dao.load.TaskModel;
 import com.leo.test.data.dao.upload.PostTaskModel;
 import com.leo.test.data.http.TaskClouds;
-import com.leo.test.data.rx.AbstractSingleHttp;
 
 import androidx.lifecycle.MutableLiveData;
 
@@ -17,7 +16,8 @@ public class MainViewModel extends BaseViewModel {
     public void getData() {
         Log.i("MainViewModel", "getData");
         PostTaskModel body = new PostTaskModel("18302278175", "abcd0987");
-        TaskClouds.getTaskData(body).subscribe(new AbstractSingleHttp<TaskModel>() {
+        TaskClouds.getTaskData(body).subscribe(new BaseViewModelSingleObserver<TaskModel>() {
+
             @Override
             public void onSuccess(TaskModel taskModel) {
                 Log.i("getData", "onSuccess");
@@ -32,5 +32,10 @@ public class MainViewModel extends BaseViewModel {
                 data.setValue(null);
             }
         });
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
     }
 }

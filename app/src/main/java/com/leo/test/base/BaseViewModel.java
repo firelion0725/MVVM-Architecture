@@ -6,6 +6,9 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
 import androidx.lifecycle.ViewModel;
+import io.reactivex.SingleObserver;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 /**
  * @author leo, ZhangWei
@@ -15,6 +18,27 @@ import androidx.lifecycle.ViewModel;
 public class BaseViewModel extends ViewModel implements LifecycleObserver {
 
     private final String TAG = this.getClass().getSimpleName();
+
+    private CompositeDisposable mCompositeDisposable;
+
+    protected void unSubscribe() {
+        if (mCompositeDisposable != null) {
+            mCompositeDisposable.clear();
+        }
+    }
+
+    protected void addSubscribe(Disposable subscription) {
+        if (mCompositeDisposable == null) {
+            mCompositeDisposable = new CompositeDisposable();
+        }
+        mCompositeDisposable.add(subscription);
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        unSubscribe();
+    }
 
     // ****************** lifeCycle ******************
 
@@ -46,5 +70,15 @@ public class BaseViewModel extends ViewModel implements LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public void onDestroy() {
         Log.i(TAG, "onDestroy");
+    }
+
+    //-----------定义一个ViewModel内用的SingleObserver
+
+    public abstract class BaseViewModelSingleObserver<T> implements SingleObserver<T> {
+
+        @Override
+        public void onSubscribe(Disposable d) {
+            addSubscribe(d);
+        }
     }
 }

@@ -31,6 +31,8 @@ public class MainFragment extends BaseFragment<MainViewModel> {
         viewModel.data.observe(this, taskModel -> {
             if (taskModel != null) {
                 Log.i("observe", "" + taskModel);
+            }else{
+                Log.i("observe", "no data");
             }
         });
 

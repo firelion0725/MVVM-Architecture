@@ -41,8 +41,8 @@ ext {
     okHttp = '3.11.0'
 
     //Rxjava
-    rxJava = '2.1.12'
-    rxAndroid = '2.0.2'
+    rxJava = '2.2.1'
+    rxAndroid = '2.1.0'
     rxLifeCycle = '2.2.1'
     rxBinding = '2.1.1'
     rxpermissions = '0.9.5@aar'
