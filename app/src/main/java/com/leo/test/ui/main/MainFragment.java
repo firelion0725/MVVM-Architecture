@@ -6,13 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.leo.test.R;
 import com.leo.test.base.BaseFragment;
+import com.leo.test.databinding.MainFragmentBinding;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class MainFragment extends BaseFragment<MainViewModel> {
+
+    private MainFragmentBinding mainFragmentBinding;
 
     public static MainFragment newInstance() {
         return new MainFragment();
@@ -22,7 +24,8 @@ public class MainFragment extends BaseFragment<MainViewModel> {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.main_fragment, container, false);
+        mainFragmentBinding = MainFragmentBinding.inflate(inflater, container, false);
+        return mainFragmentBinding.getRoot();
     }
 
     @Override
@@ -31,8 +34,10 @@ public class MainFragment extends BaseFragment<MainViewModel> {
         viewModel.data.observe(this, taskModel -> {
             if (taskModel != null) {
                 Log.i("observe", "" + taskModel);
-            }else{
+                mainFragmentBinding.message.setText("" + taskModel);
+            } else {
                 Log.i("observe", "no data");
+                mainFragmentBinding.message.setText("no data");
             }
         });
 
