@@ -21,7 +21,7 @@ public class RetrofitManger {
 
     }
 
-    public static Retrofit getInsatance() {
+    public static Retrofit getInstance() {
         return SingletonHolder.RETROFIT_CLIENT;
     }
 }

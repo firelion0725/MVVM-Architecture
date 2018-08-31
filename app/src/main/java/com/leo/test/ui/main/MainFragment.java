@@ -25,6 +25,7 @@ public class MainFragment extends BaseFragment<MainViewModel> {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         mainFragmentBinding = MainFragmentBinding.inflate(inflater, container, false);
+        mainFragmentBinding.executePendingBindings();
         return mainFragmentBinding.getRoot();
     }
 

@@ -15,7 +15,7 @@ import io.reactivex.Single;
 public class TaskClouds {
 
     private static class ServiceSingleton{
-        private static final TaskService SERVICE = RetrofitManger.getInsatance().create(TaskService.class);
+        private static final TaskService SERVICE = RetrofitManger.getInstance().create(TaskService.class);
         static TaskService getService(){
             return SERVICE;
         }

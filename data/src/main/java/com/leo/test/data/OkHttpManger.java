@@ -14,7 +14,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
  */
 public class OkHttpManger {
 
-    private static final int TIME_OUT = 10;
+    private static final long TIME_OUT = 10;
 
     private static class SingletonHolder {
         private static final OkHttpClient OK_HTTP_CLIENT = new OkHttpClient.Builder()
@@ -23,15 +23,17 @@ public class OkHttpManger {
                 .readTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .addInterceptor(getHttpLoggingInterceptor())
                 .build();
+
+        private static HttpLoggingInterceptor getHttpLoggingInterceptor() {
+            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor(message -> Log.d("OkHttpManger", "body: " + message));
+            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            return interceptor;
+        }
     }
 
     public static OkHttpClient getInstance() {
         return SingletonHolder.OK_HTTP_CLIENT;
     }
 
-    private static HttpLoggingInterceptor getHttpLoggingInterceptor() {
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor(message -> Log.d("OkHttpManger", "body: " + message));
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        return interceptor;
-    }
+
 }
