@@ -32,10 +32,10 @@ public class MainFragment extends BaseFragment<MainViewModel> {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        viewModel.data.observe(this, taskModel -> {
-            if (taskModel != null) {
-                Log.i("observe", "" + taskModel);
-                mainFragmentBinding.message.setText("" + taskModel);
+        viewModel.data.observe(this, categoriesDao -> {
+            if (categoriesDao != null) {
+                Log.i("observe", "" + categoriesDao);
+                mainFragmentBinding.message.setText("" + categoriesDao);
             } else {
                 Log.i("observe", "no data");
                 mainFragmentBinding.message.setText("no data");

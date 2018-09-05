@@ -1,12 +1,10 @@
 package com.leo.test.data.http;
 
 
-import com.leo.test.data.dao.load.TaskModel;
-import com.leo.test.data.dao.upload.PostTaskModel;
+import com.leo.test.data.dao.load.CategoriesDao;
 
 import io.reactivex.Single;
-import retrofit2.http.Body;
-import retrofit2.http.POST;
+import retrofit2.http.GET;
 
 /**
  * @author leo, ZhangWei
@@ -15,7 +13,7 @@ import retrofit2.http.POST;
  */
 public interface TaskService {
 
-    @POST("papi/login/login")
-    Single<TaskModel> getTaskData(@Body PostTaskModel body);
+    @GET("api/xiandu/categories")
+    Single<CategoriesDao> getCategories();
 
 }

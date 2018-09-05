@@ -3,35 +3,30 @@ package com.leo.test.ui.main;
 import android.util.Log;
 
 import com.leo.test.base.BaseViewModel;
-import com.leo.test.data.dao.load.TaskModel;
-import com.leo.test.data.dao.upload.PostTaskModel;
+import com.leo.test.data.dao.load.CategoriesDao;
 import com.leo.test.data.http.TaskClouds;
 
 import androidx.lifecycle.MutableLiveData;
 
 public class MainViewModel extends BaseViewModel {
 
-    public MutableLiveData<TaskModel> data = new MutableLiveData<>();
+    public MutableLiveData<CategoriesDao> data = new MutableLiveData<>();
 
     public void getData() {
-        Log.i("MainViewModel", "getData");
-        PostTaskModel body = new PostTaskModel("18302278175", "abcd0987");
-        TaskClouds.getTaskData(body).subscribe(new BaseViewModelSingleObserver<TaskModel>() {
+        TaskClouds.getCategories()
+                .subscribe(new BaseViewModelSingleObserver<CategoriesDao>() {
+                    @Override
+                    public void onSuccess(CategoriesDao categoriesDao) {
+                        Log.i("TaskClouds", ""+categoriesDao);
+                        data.setValue(categoriesDao);
+                    }
 
-            @Override
-            public void onSuccess(TaskModel taskModel) {
-                Log.i("getData", "onSuccess");
-                data.setValue(taskModel);
-//                data.postValue(taskModel);
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                Log.i("getData", "onError");
-                e.printStackTrace();
-                data.setValue(null);
-            }
-        });
+                    @Override
+                    public void onError(Throwable e) {
+                        data.setValue(null);
+                        e.printStackTrace();
+                    }
+                });
     }
 
     @Override
