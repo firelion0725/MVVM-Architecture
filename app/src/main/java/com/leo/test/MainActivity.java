@@ -1,17 +1,17 @@
 package com.leo.test;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
-
 import android.os.Bundle;
 
 import com.leo.test.databinding.MainActivityBinding;
 import com.leo.test.ui.main.MainFragment;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
 public class MainActivity extends AppCompatActivity {
 
     private MainActivityBinding viewDataBinding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

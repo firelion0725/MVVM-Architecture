@@ -44,4 +44,10 @@ public class MainFragment extends BaseFragment<MainViewModel> {
 
         viewModel.getData();
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        viewModel.data.removeObservers(this);
+    }
 }

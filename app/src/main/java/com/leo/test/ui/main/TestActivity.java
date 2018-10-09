@@ -23,4 +23,10 @@ public class TestActivity extends BaseActivity<MainViewModel> {
 
         viewModel.getData();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        viewModel.data.removeObservers(this);
+    }
 }
