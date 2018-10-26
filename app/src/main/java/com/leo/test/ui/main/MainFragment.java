@@ -12,6 +12,9 @@ import com.leo.test.databinding.MainFragmentBinding;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+/**
+ * @author Leo.ZhangTJ
+ */
 public class MainFragment extends BaseFragment<MainViewModel> {
 
     private MainFragmentBinding mainFragmentBinding;
@@ -35,7 +38,7 @@ public class MainFragment extends BaseFragment<MainViewModel> {
         viewModel.data.observe(this, categoriesDao -> {
             if (categoriesDao != null) {
                 Log.i("observe", "" + categoriesDao);
-                mainFragmentBinding.message.setText("" + categoriesDao);
+                mainFragmentBinding.message.setText(categoriesDao.toString());
             } else {
                 Log.i("observe", "no data");
                 mainFragmentBinding.message.setText("no data");
