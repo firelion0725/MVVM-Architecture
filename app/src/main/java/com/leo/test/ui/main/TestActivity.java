@@ -2,7 +2,6 @@ package com.leo.test.ui.main;
 
 import android.os.Bundle;
 import android.util.Log;
-
 import com.leo.test.R;
 import com.leo.test.base.BaseActivity;
 
@@ -13,7 +12,7 @@ public class TestActivity extends BaseActivity<MainViewModel> {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        viewModel.data.observe(this, taskModel -> {
+        viewModel.getLiveData().observe(this, taskModel -> {
             if (taskModel != null) {
                 Log.i("observe", "" + taskModel);
             }else{
@@ -27,6 +26,6 @@ public class TestActivity extends BaseActivity<MainViewModel> {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        viewModel.data.removeObservers(this);
+        viewModel.getLiveData().removeObservers(this);
     }
 }

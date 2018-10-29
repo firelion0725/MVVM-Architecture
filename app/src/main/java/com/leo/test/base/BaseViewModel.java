@@ -70,6 +70,7 @@ public class BaseViewModel extends ViewModel implements LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public void onDestroy() {
         Log.i(TAG, "onDestroy");
+        onCleared();
     }
 
     //-----------定义一个ViewModel内用的SingleObserver

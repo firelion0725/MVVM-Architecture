@@ -15,6 +15,9 @@ import androidx.lifecycle.ViewModelProviders;
  * @function
  */
 public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatActivity {
+
+    protected final String TAG = getClass().getSimpleName();
+
     protected T viewModel;
 
     @Override

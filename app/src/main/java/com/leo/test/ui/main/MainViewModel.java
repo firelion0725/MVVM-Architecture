@@ -10,14 +10,18 @@ import androidx.lifecycle.MutableLiveData;
 
 public class MainViewModel extends BaseViewModel {
 
-    public MutableLiveData<CategoriesDao> data = new MutableLiveData<>();
+    private MutableLiveData<CategoriesDao> data = new MutableLiveData<>();
+
+    public MutableLiveData<CategoriesDao> getLiveData() {
+        return data;
+    }
 
     public void getData() {
         TaskClouds.getCategories()
                 .subscribe(new BaseViewModelSingleObserver<CategoriesDao>() {
                     @Override
                     public void onSuccess(CategoriesDao categoriesDao) {
-                        Log.i("TaskClouds", ""+categoriesDao);
+                        Log.i("TaskClouds", "" + categoriesDao);
                         data.setValue(categoriesDao);
                     }
 
@@ -29,8 +33,4 @@ public class MainViewModel extends BaseViewModel {
                 });
     }
 
-    @Override
-    protected void onCleared() {
-        super.onCleared();
-    }
 }

@@ -35,7 +35,7 @@ public class MainFragment extends BaseFragment<MainViewModel> {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        viewModel.data.observe(this, categoriesDao -> {
+        viewModel.getLiveData().observe(this, categoriesDao -> {
             if (categoriesDao != null) {
                 Log.i("observe", "" + categoriesDao);
                 mainFragmentBinding.message.setText(categoriesDao.toString());
@@ -50,7 +50,7 @@ public class MainFragment extends BaseFragment<MainViewModel> {
 
     @Override
     public void onDestroy() {
+        viewModel.getLiveData().removeObservers(this);
         super.onDestroy();
-        viewModel.data.removeObservers(this);
     }
 }
