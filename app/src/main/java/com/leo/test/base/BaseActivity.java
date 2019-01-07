@@ -38,6 +38,7 @@ public abstract class BaseActivity<T extends BaseViewModel> extends AppCompatAct
     @Override
     protected void onDestroy() {
         viewModel.onCleared();
+        getLifecycle().removeObserver(viewModel);
         viewModel = null;
         super.onDestroy();
     }
